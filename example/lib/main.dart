@@ -68,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
+
             PasswordFormField(
               showSuffixIcon: true,
               patterns: [
@@ -79,8 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
               border: const OutlineInputBorder(),
             ),
 
-            TextFormField(
-            )
           ],
         )
       ),
