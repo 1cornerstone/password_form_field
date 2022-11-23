@@ -15,6 +15,7 @@ class PasswordFormField extends StatefulWidget {
   final Widget? label;
   final TextStyle? labelStyle;
   final String? labelText;
+  final Function(String?)? validationErrorMessage;
   final InputBorder? border,
       focusedBorder,
       enabledBorder,
@@ -51,22 +52,20 @@ class PasswordFormField extends StatefulWidget {
     this.labelStyle, this.labelText,
     this.focusColor, this.prefix,
     this.prefixIcon, this.prefixIconColor,
-    this.prefixStyle, this.contentPadding }) : super(key: key);
+    this.prefixStyle, this.contentPadding, this.validationErrorMessage }) : super(key: key);
 
   @override
   State<PasswordFormField> createState() => _PasswordFormFieldState();
 }
+
+
 
 class _PasswordFormFieldState extends State<PasswordFormField> {
 
   late bool _initialPasswordVisibilityState;
   List<FieldPattern> _validPattern = [];
   bool onFocus = false;
-  bool allPatternPassed = false;
 
-  validateInput(String? input){
-    return  allPatternPassed ? null : widget.errorText ?? "error";
-  }
 
   @override
   void initState() {
@@ -75,8 +74,24 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
     super.initState();
   }
 
+  validateInput(String? input){
+    int testCaseCount = 0;
+    for(int i = 0; i < _validPattern.length; i++){
+      if( !_validPattern[i].isChecked){
+        testCaseCount = -1;
+        break;
+      }
+    }
+    String? message = testCaseCount == 0 ? null : widget.errorText ?? "error";
+    if(widget.validationErrorMessage != null) {
+      widget.validationErrorMessage!(message);
+    }
+    return message;
+  }
+
   Widget _field(){
     return TextFormField(
+      key: widget.key,
       obscureText:  _initialPasswordVisibilityState,
       maxLines: 1,
       enabled: widget.enableField,
@@ -157,8 +172,4 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   }
 }
 
-
-
-/// check the validation well
-/// test the widget.
 /// documentation

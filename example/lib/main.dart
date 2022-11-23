@@ -29,36 +29,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
-
-  chip({required String label, bool isChecked = false}){
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if(isChecked) Row(
-            children: [
-              Icon(
-                  Icons.check_outlined,
-                  size: 17,
-                color: Colors.green.shade800,
-              ),
-             const SizedBox(width: 2,),
-            ],
-          ),
-          Text(label,)
-        ],
-      ),
-      decoration: BoxDecoration(
-          color: isChecked ? Colors.greenAccent.withOpacity(0.38) : Colors.grey.withOpacity(0.25),
-          borderRadius: BorderRadius.circular(10)
-      ),
-    );
-  }
+ final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -69,17 +44,28 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
+            Form(
+              key: _form,
+                child: Column(
+              children: [
+                PasswordFormField(
+                  showSuffixIcon: true,
+                  fieldHintText: "Password",
+                  patterns: [
+                    FieldPattern(label: '8 characters long', pattern: RegExp(r'[a-zA-Z0-9]{8,8}')),
+                    FieldPattern(label: 'only 1 number', pattern: RegExp(r'\d{1}')),
+                    FieldPattern(label: 'start with uppercase', pattern: RegExp(r'^[A-Z]')),
+                    FieldPattern(label: '3 Uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}')), // exactly 3 uppercase letter
+                  ],
+                  border: const OutlineInputBorder(),
+                ),
 
-            PasswordFormField(
-              showSuffixIcon: true,
-              patterns: [
-                FieldPattern(label: '8 characters long', pattern: RegExp(r'[a-zA-Z]{8}')),
-                FieldPattern(label: 'only 1 number', pattern: RegExp(r'\d{1}')),
-                FieldPattern(label: 'start with uppercase', pattern: RegExp(r'^[A-Z]')),
-                FieldPattern(label: '3 Uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}')), // exactly 3 uppercase letter
+                ElevatedButton(onPressed: (){
+                  _form.currentState!.validate();
+                }, child: Text("validate"))
               ],
-              border: const OutlineInputBorder(),
-            ),
+            ))
+
 
           ],
         )
