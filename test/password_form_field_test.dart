@@ -36,7 +36,7 @@ void main() {
     testWidgets('check for regex error', (widgetTester)async{
       await widgetTester.pumpWidget(_testWidget(child:  PasswordFormField(
         key: const Key('password1'),
-        validationErrorMessage: (response)=> errorResponse =response,
+        validator: (response)=> errorResponse =response,
         patterns: [
           FieldPattern(label: '3 Uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}'))
         ],
@@ -52,7 +52,7 @@ void main() {
     testWidgets('check if custom error is passed', (widgetTester) async{
       await widgetTester.pumpWidget(_testWidget(child: PasswordFormField(
         errorText: "Field requirement not met",
-        validationErrorMessage: (response)=> errorResponse = response,
+        validator: (response)=> errorResponse = response,
         patterns: [
           FieldPattern(label: '3 Uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}'))
         ],

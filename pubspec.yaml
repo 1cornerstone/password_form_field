@@ -1,5 +1,5 @@
 name: passwordformfield
-description: A new Flutter package project.
+description: A customizable password input widget with rule validation
 version: 0.0.1
 homepage: https://github.com/1cornerstone/password_form_field
 

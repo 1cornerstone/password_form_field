@@ -11,10 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'password form field',
+      // darkTheme: ThemeData.dark(),
+      // themeMode: ThemeMode.dark,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Custom password field'),
     );
   }
 }
@@ -52,10 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   showSuffixIcon: true,
                   fieldHintText: "Password",
                   patterns: [
-                    FieldPattern(label: '8 characters long', pattern: RegExp(r'[a-zA-Z0-9]{8,8}')),
-                    FieldPattern(label: 'only 1 number', pattern: RegExp(r'\d{1}')),
+                    FieldPattern(label: '8 characters minimum', pattern: RegExp(r'[a-zA-Z0-9]{8}')),
                     FieldPattern(label: 'start with uppercase', pattern: RegExp(r'^[A-Z]')),
-                    FieldPattern(label: '3 Uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}')), // exactly 3 uppercase letter
+                    FieldPattern(label: 'contain 3 uppercase letter', pattern: RegExp(r'(.*[A-Z]){3}')), // exactly 3 uppercase letter
                   ],
                   border: const OutlineInputBorder(),
                 ),

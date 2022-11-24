@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 
 class PasswordChip extends StatelessWidget {
   final bool isChecked;
-  final String label;
-  const PasswordChip({Key? key, this.isChecked = false, required this.label}) : super(key: key);
+  final String chipLabel;
+  final TextStyle? checkedChipLabelStyle;
+  final TextStyle? uncheckChipLabelStyle;
+  final Color? uncheckChipColor;
+  final Color? checkedChipColor;
+  final Icon? checkIcon;
+  const PasswordChip({Key? key, this.isChecked = false,
+    required this.chipLabel, this.checkIcon,
+    this.checkedChipLabelStyle,
+    this.uncheckChipLabelStyle,
+    this.uncheckChipColor, this.checkedChipColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class PasswordChip extends StatelessWidget {
         children: [
           if(isChecked) Row(
             children: [
-              Icon(
+             checkIcon ??  Icon(
                 Icons.check_outlined,
                 size: 17,
                 color: Colors.green.shade800,
@@ -23,11 +32,13 @@ class PasswordChip extends StatelessWidget {
               const SizedBox(width: 2,),
             ],
           ),
-          Text(label,)
+          Text(
+            chipLabel,
+          style: checkedChipLabelStyle ?? uncheckChipLabelStyle,)
         ],
       ),
       decoration: BoxDecoration(
-          color: isChecked ? Colors.greenAccent.withOpacity(0.38) : Colors.grey.withOpacity(0.25),
+          color: isChecked ? checkedChipColor ?? Colors.greenAccent.withOpacity(0.38) : uncheckChipColor ?? Colors.grey.withOpacity(0.25),
           borderRadius: BorderRadius.circular(10)
       ),
     );
