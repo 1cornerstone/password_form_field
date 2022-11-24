@@ -26,12 +26,16 @@ A customizable password input widget with rule validation
         border: const OutlineInputBorder(),
       ),
 
-### Patterns Customization
+### Pattern Customization
  For proper validation beyond limit, FieldPattern is made available.
  
 *Note:* Make sure your rule(s) is correct, the package validate with only regular expression passed nothing more.
 
 ## Sample
 
- <img src="https://github.com/1cornerstone/password_form_field/blob/master/screenshot/passwordfield.png" width="240" height="430" alt="passwordfield.png"/> 
- <img src="https://github.com/1cornerstone/password_form_field/blob/master/screenshot/passwordfield_filled.png" width="240" height="430" alt="passwordfield_filled.png"/>
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/1cornerstone/password_form_field/master/screenshot/passwordfield.png" alt="passwordfield.png"/></td>
+    <td><img src="https://raw.githubusercontent.com/1cornerstone/password_form_field/master/screenshot/passwordfield_filled.png" alt="passwordfield_filled.png"/></td>
+  </tr>
+</table>

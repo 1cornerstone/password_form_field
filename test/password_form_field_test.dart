@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:passwordformfield/password_form_field.dart';
+import 'package:passwordformfield/passwordformfield.dart';
 
 void main() {
 
